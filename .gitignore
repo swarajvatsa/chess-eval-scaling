@@ -1,0 +1,23 @@
+# build artifacts
+engine/build/
+build/
+*.o
+*.out
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# training intermediates (NOT the shipped .qbin in models/)
+*.pt
+*.npz
+*.parquet
+shards/
+data/
+manifest.json
+
+# logs / scratch
+*.log
+/tmp/

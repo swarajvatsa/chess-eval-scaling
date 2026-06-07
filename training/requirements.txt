@@ -1,0 +1,4 @@
+torch>=2.6
+python-chess>=1.11
+numpy
+pyarrow
