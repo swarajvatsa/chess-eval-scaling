@@ -85,7 +85,11 @@ int main(int argc, char** argv) {
             std::cout << "option name Threads type spin default 1 min 1 max 64\n";
             std::cout << "uciok\n" << std::flush;
         } else if (cmd == "isready") {
-            ensure_net();
+            // Don't force the net to load here. Match runners (e.g. fastchess) send
+            // the first `isready` BEFORE `setoption name EvalFile`, so loading now
+            // would try the built-in default path — which is relative and usually
+            // wrong under the runner's working directory — and fail noisily. The net
+            // loads lazily on the first `go`, by which point EvalFile has been set.
             std::cout << "readyok\n" << std::flush;
         } else if (cmd == "setoption") {
             // Format: setoption name <Name> value <Value>
